@@ -1,0 +1,15 @@
+template(name="nav")
+  nav
+    .nav-wrapper.indigo
+      div(class="{{#if inRoom}}waves-effect{{/if}}").icon-wrapper.waves-light
+        if inRoom
+          a.js-leave-room
+            i.material-icons arrow_back
+            
+            
+      .brand-logo LehrerBingo !{room}
+      ul#nav-mobile.right.hide-on-med-and-down
+        if currentUser          
+          li
+            a.js-logout
+              i.material-icons lock_outline

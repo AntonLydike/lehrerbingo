@@ -1,0 +1,13 @@
+template(name="lobbyList")
+  .lobby_list
+    .list
+      .list-header
+        h4 Lobbys
+      each lobbys
+        div(_id="#{_id}").list-item.waves-effect.join-room
+          .title #{name}
+          .grey-text #{admin}
+            
+      
+    a.btn-floating.btn-large.waves-effect.waves-light.pink.add-room
+      i.material-icons add

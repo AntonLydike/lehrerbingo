@@ -1,0 +1,51 @@
+.list {
+  .list-item, .list-header {
+    display: block;
+    color:inherit;
+    padding:8px 16px;
+  }
+
+  .list-header h4{
+    margin:16px 0 0 0;
+    padding:0;
+  }
+
+  .title {
+    font-size:1.5rem;
+  }
+
+  &.actions {
+    .list-item {
+      padding-left: 72px;
+    }
+    .first {
+      position: absolute;
+      top:8px;
+      left:16px;
+      height:40px;
+      width:40px;
+
+      .material-icons {
+        font-size: 40px !important;
+      }
+    }
+
+  }
+  &.single-content {
+    font-size:1.2rem;
+    vertical-align: middle;
+
+    .list-item {
+      padding:16px;
+    }
+  }
+}
+
+.btn-floating {
+  position: fixed;
+  bottom:26px !important;
+  right:26px !important;
+  top:auto !important;
+  left:auto !important;
+  z-index:6;
+}

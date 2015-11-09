@@ -1,0 +1,26 @@
+template(name="sidebar")
+  .sidebar.z-depth-1(open=isOpen $dyn=logInHidden)
+    .section.overview
+      +userdata_small(shadow=false rcorners=false)
+    .section 
+      a.item.waves-effect(href="{{pathFor 'home'}}") Dashboard
+        i.material-icons home
+    .divider
+    .section 
+      .item.title.grey-text Debug
+      a.item.waves-effect(href="{{pathFor 'bills_add'}}") add bill test
+        i.material-icons build
+      a.item.waves-effect(href="{{pathFor 'bills_show_all'}}") Alle Rechnungen
+        i.material-icons list
+    .divider
+    .section 
+      a.item.waves-effect Stundenplan
+        i.material-icons event
+      a.item.waves-effect Heute
+        i.material-icons today
+    .divider
+    .section
+      a.item.waves-effect Einstellungen
+        i.material-icons settings
+
+  .sidebar-bg(open = isOpen)

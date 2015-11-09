@@ -1,0 +1,20 @@
+.game
+  .list
+    .list-header
+      h4 Mitspieler
+    each players
+      .list-item #{username}
+        each words
+          if done
+            | 1-
+          else 
+            | 0-
+  
+  .list.single-content
+    .list-header
+      h4 Deine wörter
+    each words
+      div(_id="#{word._id}").list-item.waves-effect.toggle #{word.word}
+        input(type="checkbox" checked="{{#if done}}checked{{/if}}" id="#{word._id}")
+        label(for="#{word._id}").right
+    

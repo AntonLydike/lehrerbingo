@@ -1,0 +1,15 @@
+.lobby.row
+  .col.s12
+    if winner
+      h2 Gewonnen hat: #{winner}!!!
+    .section
+      h4 Mitspieler
+      .list
+        each user
+          .list-item #{username}
+    if isAdmin
+      .divider
+      .section 
+        .btn.pink.waves-effect.waves-light.start Start
+      
+  

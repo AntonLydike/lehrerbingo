@@ -1,0 +1,12 @@
+template(name="layout")
+  +nav
+  
+  //- unless currentUser
+  //-   +login
+  //- else
+  .main
+    .content
+      .yield.row
+        +yield
+        span(style="display:none") 
+        // this is a node for javascript to work with
