@@ -1,0 +1,41 @@
+.switch label input[type=checkbox]:checked+.lever {
+    background-color: #f48fb1 !important; /*blue-lighten-3*/
+}
+
+.switch label input[type=checkbox]:checked+.lever:after {
+    background-color: #e91e63 !important;
+}
+
+input[type="radio"].with-gap:checked+label:before {
+    border-color:#e91e63 !important;
+}
+
+input[type="radio"].with-gap:checked+label:after {
+    border-color:#e91e63 !important;
+    background-color:#e91e63 !important;
+}
+
+input[type="text"]:not([readonly]):focus, [type="password"]:not([readonly]):focus, [type="email"]:not([readonly]):focus {
+  border-bottom:1px solid #ec407a !important;
+  box-shadow: 0 1px 0 0 #ec407a !important;
+}
+
+input[type="text"]:not([readonly]):focus+label, [type="password"]:not([readonly]):focus+label, [type="email"]:not([readonly]):focus+label {
+  color:#ec407a !important;
+}
+
+input + .err, label + .err {
+    color:#ef5350;
+    display:block;
+    margin-top:-14px;
+    margin-left:4px;
+    overflow:hidden;
+    height:0;
+    margin-bottom:6px;
+
+    transition:.3s;
+}
+
+input + .err.active, label + .err.active {
+    height:18px
+}

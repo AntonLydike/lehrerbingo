@@ -1,0 +1,23 @@
+.lobby.row
+  .col.s12
+    .section
+      h4 Mitspieler
+      .list
+        each user
+          .list-item
+            .title #{username}
+              if admin
+                span.pink.right.dis Admin
+              if you
+                span.indigo.right.dis Du
+              if winner
+                span.amber.darken-2.right.dis Gewinner
+                
+    .divider
+    .section 
+      if isAdmin
+          div(class="{{#if startable}}waves-effect{{else}}disabled{{/if}}").btn.pink.waves-light.start Start
+          unless startable 
+            .grey-text Es werden mindestens 3 Spieler benötigt!
+      else
+        .grey-text Du kanst nur Räume starten, die du erstellt hast!

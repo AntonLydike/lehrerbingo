@@ -1,0 +1,19 @@
+template(name="nav")
+  nav
+    .nav-wrapper.indigo
+      div(class="{{#if inRoom}}waves-effect{{/if}}").icon-wrapper.waves-light
+        if inRoom
+          a.js-leave-room
+            i.material-icons arrow_back
+        else
+          img(src="/android-icon-48x48.png").app-icon
+            
+      .brand-logo LehrerBingo !{room}
+      ul#desktop.right.hide-on-med-and-down
+        if currentUser          
+          li
+            a.js-logout
+              i.material-icons lock_outline
+      if currentUser          
+        a.js-logout.button-collapse.right
+          i.material-icons lock_outline

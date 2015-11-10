@@ -1,0 +1,23 @@
+.game
+  .list.short-padding
+    .list-header
+      h4 Mitspieler
+    each players
+      .list-item
+        .title
+          .indigo.dis #{stats}
+          |#{username}
+          if admin
+            span.pink.right.dis Admin
+          if you
+            span.indigo.right.dis Du
+        .grey-text #{words}
+  
+  .list.single-content
+    .list-header
+      h4 Deine wörter
+    each words
+      div(_id="#{word._id}").list-item.waves-effect.toggle #{word.word}
+        input(type="checkbox" checked="{{#if done}}checked{{/if}}" id="#{word._id}")
+        label(for="#{word._id}").right
+    

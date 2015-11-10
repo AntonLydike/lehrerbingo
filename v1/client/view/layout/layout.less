@@ -1,0 +1,110 @@
+.content {
+  display:flex;
+  flex-direction:column;
+  width:100%;
+  min-height:100%;
+  overflow: auto;
+  height: ~"calc(100vh - 64px)";
+
+  @media (max-width:600px) {
+    height:~"calc(100vh - 56px)";
+  }
+
+  .yield {
+    position:relative;
+    flex: 1 0 auto;
+    min-height:~"calc(100vh - 64px)";
+    margin: 0;
+
+    @media (max-width:600px) {
+      min-height:~"calc(100vh - 56px)";
+    }
+
+    h5 {
+      margin-top:44px
+    }
+
+    // animating uihooks
+    > * {
+      top:0;
+      left: 0;
+      right: 0;
+    }
+  }
+}
+
+footer.page-footer {
+  position:relative;
+  z-index:0;
+}
+
+nav {
+  position: relative;
+  z-index:9;
+
+  .brand-logo {
+    padding:0 16px;
+    font-size:1.2em;
+    vertical-align: middle;
+    display: inline-block;
+    left:44px !important;
+    transform:none !important;
+  }
+
+  .app-icon {
+    margin-left: -15px;
+  }
+
+  .logo {
+    height: 1.65em;
+    vertical-align: middle;
+  }
+
+  ul li {
+    cursor: pointer;
+  }
+
+  .small {
+    font-size:.8em;
+    display:inline-block;
+  }
+
+  .icon-wrapper {
+    height:50px;
+    margin-left:6px;
+    width:50px;
+    padding:0 16px;
+    text-align: center;
+    display:inline-block;
+    border-radius:5px;
+    vertical-align: middle;
+    position: relative;
+    vertical-align: center;
+
+    .material-icons {
+      height:50px !important;
+      line-height: 50px;
+      margin-left: -5px;
+    }
+
+  }
+}
+
+.dis {
+  padding: 2px 8px;
+  border-radius: 2px;
+  font-size:1rem;
+  color:#fff !important;
+  min-width:50px;
+  text-align: center;
+  display: inline-block;
+  vertical-align: middle;
+  margin:4px 2px;
+}
+
+
+.button-collapse {
+  width: 64px;
+  text-align: center;
+  cursor: pointer;
+}

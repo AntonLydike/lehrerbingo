@@ -1,0 +1,21 @@
+template(name="lobbyList")
+  .lobby_list
+    .list
+      .list-header
+        h4 Lobbys
+      each lobbys
+        div(_id="#{_id}" class="{{#if started}}started{{/if}}").list-item.waves-effect.join-room
+          .title 
+            span.indigo.dis #{anzahlUser}
+            | #{name} 
+            if started
+              span.red.darken-2.dis.right In game
+            else 
+              span.green.dis.right Waiting
+          .grey-text Von #{admin}
+      if noLobbys
+        .list-item.grey-text Keine Lobbys gefunden - 
+         a(href).add-room.pink-text Erstelle eine Neue!
+      
+    a.btn-floating.btn-large.waves-effect.waves-light.pink.add-room
+      i.material-icons add
