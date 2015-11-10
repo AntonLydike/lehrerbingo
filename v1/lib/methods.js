@@ -1,5 +1,7 @@
 Meteor.methods({
   createRoom:function(name) {
+    check(name, String);
+
     var user = Meteor.users.findOne({
         _id:this.userId
       },{
@@ -30,6 +32,8 @@ Meteor.methods({
     return {success:true, id:id};
   },
   enterRoom:function(_id) {
+    check(_id, String);
+
     var user = Meteor.users.findOne({
         _id:this.userId
       },{
@@ -45,6 +49,10 @@ Meteor.methods({
     if (!room) {
       console.log(room);
       return {success:false,err:"Raum nicht gefunden!"};
+    }
+
+    if (room.started) {
+      return {success:false,err:"Raum hat bereits gestartet!"};
     }
 
     if (!!_.find(room.user,function (v) {return v._id == user._id})) {
@@ -63,6 +71,8 @@ Meteor.methods({
 
   },
   leaveRoom:function (_id) {
+    check(_id, String);
+
     var user = Meteor.users.findOne({
         _id:this.userId
       },{
@@ -107,6 +117,8 @@ Meteor.methods({
     }})
   },
   startGame:function(_id) {
+    check(_id, String);
+
     if (Meteor.isClient) {
       return {success:true};
     }
@@ -120,8 +132,11 @@ Meteor.methods({
     var room = Rooms.findOne({_id});
 
     if (!room) {
-      console.log(room);
       return {success:false,err:"Raum nicht gefunden!"};
+    }
+
+    if (room.user.length < 3) {
+      return {success:false,err:"Es werden mindestens 3 Spieler benötigt!"}
     }
 
     if (room.admin_id !== user._id) {
@@ -136,9 +151,8 @@ Meteor.methods({
        words = w.fetch();
 
     _.each(user,function (v) {
-      var random = rndInts(4,0,wlength),
+      var random = rndInts(4,0,wlength - 1),
             list = _.map(random,function (v) {
-        console.log(v,words[v]);
         return {word:words[v],done:false};
       })
 
@@ -182,21 +196,9 @@ Meteor.methods({
 
 
   },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   reset:function () {
+    if (Meteor.user().username != "Anton") throw new Meteor.Error("not-authorized - " + user.username);
+
     if (Meteor.isClient) return;
 
     Meteor.users.update({},{$set:{

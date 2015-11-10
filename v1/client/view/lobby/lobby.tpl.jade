@@ -6,10 +6,17 @@
       h4 Mitspieler
       .list
         each user
-          .list-item #{username}
-    if isAdmin
-      .divider
-      .section 
-        .btn.pink.waves-effect.waves-light.start Start
-      
-  
+          div(class="{{#if you}}indigo-text{{/if}} {{#if admin}}pink-text{{/if}}").list-item #{username}
+            if admin
+              span.grey-text (Admin)
+            if you
+              span.grey-text (Du)
+              
+    .divider
+    .section 
+      if isAdmin
+          div(class="{{#if startable}}waves-effect{{else}}disabled{{/if}}").btn.pink.waves-light.start Start
+          unless startable 
+            .grey-text Es werden mindestens 3 Spieler benötigt!
+      else
+        .grey-text Du kanst nur Räume starten, die du erstellt hast!

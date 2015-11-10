@@ -3,12 +3,12 @@
     .list-header
       h4 Mitspieler
     each players
-      .list-item #{username}
-        each words
-          if done
-            | 1-
-          else 
-            | 0-
+      div(class="{{#if you}}indigo-text{{/if}} {{#if admin}}pink-text{{/if}}").list-item #{username}
+        span(title="#{words}").indigo-text.text-lighten-2 (#{stats})
+        if admin
+          span.grey-text (Admin)
+        if you
+          span.grey-text (Du)
   
   .list.single-content
     .list-header

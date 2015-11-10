@@ -1,5 +1,5 @@
 Meteor.publish("Room_list", function(){
-  return Rooms.find({},{fields: {name:1,admin:1,started:1}});
+  return Rooms.find({},{fields: {name:1,admin:1,started:1,user:1}});
 });
 
 Meteor.publish("userinfo", function() {

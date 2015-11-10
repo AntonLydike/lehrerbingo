@@ -39,10 +39,10 @@ Router.route('/:_id',function () {
   }
   if (room.started) {
     this.render('game',{
-      data:{
+      data:_.extend(room,{
         words:Meteor.user().words,
-        players:Meteor.users.find({_id:{$ne:Meteor.userId()}})
-      }
+        players:Meteor.users.find({})
+      })
     })
   } else {
     this.render('lobby',{
@@ -56,6 +56,5 @@ Router.route('/:_id',function () {
       Meteor.subscribe('Room_view',this.params._id),
       Meteor.subscribe('playerinfo',this.params._id),
       Meteor.subscribe('userinfo')
-
     ]}
 });

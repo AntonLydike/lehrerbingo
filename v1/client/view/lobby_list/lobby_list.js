@@ -29,3 +29,12 @@ Template.lobbyList.events({
     })
   }
 });
+
+Template.lobbyList.helpers({
+  noLobbys:function () {
+    return this.lobbys.count() == 0;
+  },
+  anzahlUser:function () {
+    return this.user.length;
+  }
+})
