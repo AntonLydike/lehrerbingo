@@ -14,6 +14,8 @@ Template.lobbyList.events({
   },
   'click .add-room':function () {
     var name = prompt('Raumname:');
+    if (!name) return;
+
     while (name == "" || Rooms.findOne({name})) {
       name = prompt('Name ist bereits vergeben - Anderer Raumname:');
     }

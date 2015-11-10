@@ -5,10 +5,11 @@ template(name="lobbyList")
         h4 Lobbys
       each lobbys
         div(_id="#{_id}" class="{{#if started}}started{{/if}}").list-item.waves-effect.join-room
-          .title #{name} 
-            span.indigo-text.text-lighten-2 (#{anzahlUser})
+          .title 
+            span.indigo.dis #{anzahlUser}
+            | #{name} 
             if started
-              span.grey-text (In game)
+              span.grey.dis.right In game
           .grey-text Von #{admin}
       if noLobbys
         .list-item.grey-text Keine Lobbys gefunden - 

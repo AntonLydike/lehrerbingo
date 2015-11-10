@@ -197,7 +197,7 @@ Meteor.methods({
 
   },
   reset:function () {
-    if (Meteor.user().username != "Anton") throw new Meteor.Error("not-authorized - " + user.username);
+    if (Meteor.user().username != "anton") throw new Meteor.Error("not-authorized - " + user.username);
 
     if (Meteor.isClient) return;
 
