@@ -10,6 +10,8 @@ Template.game.helpers({
        self = this;
 
     return _.map(this.players.fetch(),function (v) {
+      console.log("" + _.reduce(v.words,function (memo, v) {return memo + (v.done == true?1:0)},0) + "/" + v.words.length);
+
       return {
         username:v.username,
         admin:(v._id == self.admin_id),

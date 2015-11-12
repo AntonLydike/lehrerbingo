@@ -33,6 +33,7 @@ Router.route('/',{
 
 Router.route('/:_id',function () {
   var room = Rooms.findOne({_id:this.params._id});
+  
   if (!room || Meteor.user().room !== this.params._id) {
     Router.go('/');
     return;

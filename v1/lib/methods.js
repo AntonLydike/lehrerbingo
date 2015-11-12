@@ -158,7 +158,8 @@ Meteor.methods({
         room:_id,
         words:list
       }});
-    })
+
+    });
 
     return {success:true};
 
@@ -212,6 +213,7 @@ Meteor.methods({
     Words.remove({});
 
     a = "Alphabet,Arbeitsagentur,Altenheim,Amulett,Anlage,Arm,Aufkleber,Auspuff,Auto,Ball,Bar,Baum,Bestellliste,Betttuch,Biokraftstoff,Blatt,Buch,Callcenter,Castingshow,Chinese,Clip,Computer,Dach,Dichtung,Disco,Dollar,Dorfschule,Dorfdisco,Eimer,Eisenbahn,Engel,Erdoel,Fahrrad,Feuerloescher,Film,Foto,Freiheit,Gehirn,Gehweg,Grundgesetz,Grundstueck,Gymnasium,Hafen,Haus,Heimatland,Holz,Horn,Igel,Impfstoff,Information,Infusion,Insel,Jachthafen,Jacke,Jaeger,Jobcenter,Jugendclub,Kaktus,Kamm,Kammer,Keller,Kugel,Leber,Leiste,Leiter,Liebe,Locher,Maus,Monat,Monitor,Musikstueck,Muskel,Nabelschnur,Nachbar,Nagel,Nase,Natur,Nonne,Notunterkunft,Obst,Ochse,Offizier,Orgel,Osterei,Paket,Papier,Passwort,Politiker,Poster,Quader,Quark,Quecksilber,Quelle,Quastenflosser,Rabe,Radio,Rakete,Reifen,Rettungswagen,Rechtsanwaltsgehilfe,Ritter,Sand,Scanner,Schloss,Stein,Strauch,Tasche,Taschenrechner,Tastatur,Taste,Tieger,Tisch,Turnschuh,Uhr,Ulme,Umschlagplatz,Umwelt,Unwetter,Vanille,Vater,Verdauung,Verkehr,Versicherung,Vogel,Waage,Waggon,Waschzeug,Wasser,Wort,Xylophon,Yogalehrer,Zahn,Zeichen,Zeitung,Zentrum,Eidechse,Taube,Waffel,Schlittschuhe,Satan,Apfel,Affe,Giraffe,Promenade,Defenestration,Staffellauf,Muecke,Brotbuechse,Tuerklinke,Wegbegrenzungslinie,Regelwerk,Sammelheft".split(',');
+
     for (i=0;i<a.length;i++) {
       Words.insert({
         word:a[i]
