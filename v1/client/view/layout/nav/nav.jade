@@ -1,14 +1,14 @@
 template(name="nav")
   nav
     .nav-wrapper.indigo
-      div(class="{{#if inRoom}}waves-effect{{/if}}").icon-wrapper.waves-light
-        if inRoom
-          a.js-leave-room
+      div(class="{{#if inLobby}}waves-effect{{/if}}").icon-wrapper.waves-light
+        if inLobby
+          a.js-leave-lobby
             i.material-icons arrow_back
         else
           img(src="/android-icon-48x48.png").app-icon
             
-      .brand-logo LehrerBingo !{room}
+      .brand-logo LehrerBingo !{lobby}
       ul#desktop.right.hide-on-med-and-down
         if currentUser          
           li

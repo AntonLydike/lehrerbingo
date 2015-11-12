@@ -1,5 +1,5 @@
 Meteor.methods({
-  createRoom:function(name) {
+  createLobby:function(name) {
     check(name, String);
 
     var user = Meteor.users.findOne({
@@ -12,11 +12,11 @@ Meteor.methods({
       throw new Meteor.Error("not-authorized - " + user.username);
     }
 
-    if (Rooms.find({name:name}).count() > 0) {
+    if (Lobbys.find({name:name}).count() > 0) {
       return {success:false,err:"Raum existiert bereits!"};
     }
 
-    var id = Rooms.insert({
+    var id = Lobbys.insert({
       name,
       admin:user.username,
       user:[user],
@@ -26,12 +26,12 @@ Meteor.methods({
     })
 
     Meteor.users.update({_id:this.userId},{
-      $set:{room:id}
+      $set:{lobby:id}
     })
 
     return {success:true, id:id};
   },
-  enterRoom:function(_id) {
+  enterLobby:function(_id) {
     check(_id, String);
 
     var user = Meteor.users.findOne({
@@ -44,32 +44,32 @@ Meteor.methods({
       throw new Meteor.Error("not-authorized - " + user.username);
     }
 
-    var room = Rooms.findOne({_id:_id});
+    var Lobby = Lobbys.findOne({_id:_id});
 
-    if (!room) {
+    if (!Lobby) {
       return {success:false,err:"Raum nicht gefunden!"};
     }
 
-    if (room.started) {
+    if (Lobby.started) {
       return {success:false,err:"Raum hat bereits gestartet!"};
     }
 
-    if (!!_.find(room.user,function (v) {return v._id == user._id})) {
+    if (!!_.find(Lobby.user,function (v) {return v._id == user._id})) {
       return {success:true,already:true};
     }
 
-    Rooms.update({_id}, {$push:{
+    Lobbys.update({_id}, {$push:{
       user:user
     }});
 
     Meteor.users.update({_id:this.userId},{
-      $set:{room:_id}
+      $set:{lobby:_id}
     })
 
     return {success:true};
 
   },
-  leaveRoom:function (_id) {
+  leaveLobby:function (_id) {
     check(_id, String);
 
     var user = Meteor.users.findOne({
@@ -82,26 +82,26 @@ Meteor.methods({
       throw new Meteor.Error("not-authorized - " + user.username);
     }
 
-    var room = Rooms.findOne({_id});
+    var lobby = Lobbys.findOne({_id});
 
-    if (!room) {
+    if (!lobby) {
       return {success:false,err:"Raum nicht gefunden!"};
     }
 
-    if (!_.find(room.user,function (v) {return v._id == user._id})) {
+    if (!_.find(lobby.user,function (v) {return v._id == user._id})) {
       return {success:true,already:true};
     }
 
-    if (room.admin_id == this.userId) {
-      Rooms.remove({_id});
+    if (lobby.admin_id == this.userId) {
+      Lobbys.remove({_id});
     } else {
-      Rooms.update({_id}, {$pull:{
+      Lobbys.update({_id}, {$pull:{
         user:user
       }});
     }
 
     Meteor.users.update({_id:this.userId},{$set:{
-      room:false,
+      lobby:false,
       words:[]
     }})
 
@@ -111,10 +111,10 @@ Meteor.methods({
     if (!this.userId) return;
 
     Meteor.users.update({_id:this.userId},{$set:{
-      room:false
+      lobby:false
     }})
   },
-  startGame:function(_id) {
+  startLobby:function(_id) {
     check(_id, String);
 
     if (Meteor.isClient) {
@@ -127,23 +127,23 @@ Meteor.methods({
       throw new Meteor.Error("not-authorized - " + user.username);
     }
 
-    var room = Rooms.findOne({_id});
+    var lobby = Lobbys.findOne({_id});
 
-    if (!room) {
+    if (!lobby) {
       return {success:false,err:"Raum nicht gefunden!"};
     }
 
-    if (room.user.length < 3) {
+    if (lobby.user.length < 3) {
       return {success:false,err:"Es werden mindestens 3 Spieler benötigt!"}
     }
 
-    if (room.admin_id !== user._id) {
+    if (lobby.admin_id !== user._id) {
       return {success:false,err:"Sie sind nicht admin!"};
     }
 
-    Rooms.update({_id},{$set:{started:true,winner:false}});
+    Lobbys.update({_id},{$set:{started:true,winner:false}});
 
-    var user = room.user,
+    var user = lobby.user,
            w = Words.find(),
      wlength = w.count(),
        words = w.fetch();
@@ -155,7 +155,7 @@ Meteor.methods({
             });
 
       Meteor.users.update({_id:v._id},{$set:{
-        room:_id,
+        lobby:_id,
         words:list
       }});
 
@@ -174,9 +174,9 @@ Meteor.methods({
       throw new Meteor.Error("not-authorized - " + user.username);
     }
 
-    var room = Rooms.findOne({_id:user.room});
+    var lobby = Lobbys.findOne({_id:user.lobby});
 
-    if (!room.started) {
+    if (!lobby.started) {
       return {success:false,err:"Game hasn't started yet!"};
     }
 
@@ -190,7 +190,7 @@ Meteor.methods({
     });
 
     if (done) {
-      Rooms.update({_id:user.room},{$set:{
+      Lobbys.update({_id:user.lobby},{$set:{
         started:false,
         winner:user.username
       }})
@@ -204,11 +204,11 @@ Meteor.methods({
     if (Meteor.isClient) return;
 
     Meteor.users.update({},{$set:{
-      room:false,
+      lobby:false,
       words:[]
     }});
 
-    Rooms.remove({});
+    Lobbys.remove({});
 
     Words.remove({});
 

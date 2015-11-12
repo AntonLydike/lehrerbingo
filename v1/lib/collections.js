@@ -1,5 +1,5 @@
-Rooms = new Meteor.Collection("rooms");
-Rooms.before.insert(function(uid, doc){
+Lobbys = new Meteor.Collection("lobbys");
+Lobbys.before.insert(function(uid, doc){
   doc.owner = uid;
 });
 

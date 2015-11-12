@@ -3,8 +3,8 @@ Template.nav.helpers({
   animated: function(){
      return Session.get('sidebarOpen')?'anim':'';
   },
-  room: function () {
-    var r = Session.get('room');
+  lobby: function () {
+    var r = Session.get('lobby');
     if (r) {
       return "<span class='small'>- <span class='light'>" + r + '</span></span>';
     } else {

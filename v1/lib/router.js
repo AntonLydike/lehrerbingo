@@ -4,14 +4,14 @@ Router.configure({
   loadingTemplate:"loading",
   onBeforeAction: function(){
     if ( Meteor.userId() ){
-      if (Meteor.user().room) {
+      if (Meteor.user().lobby) {
         this.next();
 
-        if (Rooms.find({_id:Meteor.user().room}).count() < 1) {
+        if (Lobbys.find({_id:Meteor.user().lobby}).count() < 1) {
           Meteor.call('cleanUser');
           alert('Die Lobby wurde vom Admin abgebrochen!');
         } else {
-          Router.go('/' + Meteor.user().room);
+          Router.go('/' + Meteor.user().lobby);
         }
       } else {
         this.next();
@@ -24,37 +24,37 @@ Router.configure({
 Router.route('/',{
   name:'home',
   template:'lobbyList',
-  waitOn: function () {return [Meteor.subscribe('Room_list')]},
+  waitOn: function () {return [Meteor.subscribe('lobby_list')]},
   data: function () {
-    return {lobbys:Rooms.find({})};
+    return {lobbys:Lobbys.find({})};
   }
 });
 
 
 Router.route('/:_id',function () {
-  var room = Rooms.findOne({_id:this.params._id});
-  
-  if (!room || Meteor.user().room !== this.params._id) {
+  var lobby = Lobbys.findOne({_id:this.params._id});
+
+  if (!lobby || Meteor.user().lobby !== this.params._id) {
     Router.go('/');
     return;
   }
-  if (room.started) {
+  if (lobby.started) {
     this.render('game',{
-      data:_.extend(room,{
+      data:_.extend(lobby,{
         words:Meteor.user().words,
         players:Meteor.users.find({})
       })
     })
   } else {
     this.render('lobby',{
-      data:room
+      data:lobby
     })
   }
 },{
   name:'game',
   waitOn: function () {
     return [
-      Meteor.subscribe('Room_view',this.params._id),
+      Meteor.subscribe('lobby_view',this.params._id),
       Meteor.subscribe('playerinfo',this.params._id),
       Meteor.subscribe('userinfo')
     ]}

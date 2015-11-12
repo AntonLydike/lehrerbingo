@@ -4,7 +4,7 @@ template(name="lobbyList")
       .list-header
         h4 Lobbys
       each lobbys
-        div(_id="#{_id}" class="{{#if started}}started{{/if}}").list-item.waves-effect.join-room
+        div(_id="#{_id}" class="{{#if started}}started{{/if}}").list-item.waves-effect.join-lobby
           .title 
             span.indigo.dis #{anzahlUser}
             | #{name} 
@@ -15,7 +15,7 @@ template(name="lobbyList")
           .grey-text Von #{admin}
       if noLobbys
         .list-item.grey-text Keine Lobbys gefunden - 
-         a(href).add-room.pink-text Erstelle eine Neue!
+         a(href).add-lobby.pink-text Erstelle eine Neue!
       
-    a.btn-floating.btn-large.waves-effect.waves-light.pink.add-room
+    a.btn-floating.btn-large.waves-effect.waves-light.pink.add-lobby
       i.material-icons add

@@ -1,8 +1,8 @@
 Template.lobbyList.events({
-  'click .join-room': function(e,t){
+  'click .join-lobby': function(e,t){
     var _id = $(this).attr('_id');
 
-    Meteor.call('enterRoom',_id,function (e,r) {
+    Meteor.call('enterLobby',_id,function (e,r) {
       if (e) {
         // handle it!
       } else if (r.success) {
@@ -12,15 +12,15 @@ Template.lobbyList.events({
       }
     });
   },
-  'click .add-room':function () {
+  'click .add-lobby':function () {
     var name = prompt('Raumname:');
     if (!name) return;
 
-    while (name == "" || Rooms.findOne({name})) {
+    while (name == "" || Lobbys.findOne({name})) {
       name = prompt('Name ist bereits vergeben - Anderer Raumname:');
     }
 
-    Meteor.call('createRoom',name,function (e,r) {
+    Meteor.call('createLobby',name,function (e,r) {
       console.log(e,r);
       if (e) {
       } else if (r.success) {

@@ -24,8 +24,8 @@ Template.layout.events({
   "click .js-logout": function () {
     Meteor.logout();
   },
-  "click .js-leave-room": function () {
-    Meteor.call('leaveRoom',Meteor.user().room);
+  "click .js-leave-lobby": function () {
+    Meteor.call('leaveLobby',Meteor.user().lobby);
     Router.go('/');
   }
 });

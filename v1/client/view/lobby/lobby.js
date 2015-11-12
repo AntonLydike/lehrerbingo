@@ -1,22 +1,22 @@
 
 Template.lobby.onRendered(function(){
-  Session.set('room',this.data.name);
+  Session.set('lobby',this.data.name);
 });
 Template.lobby.onDestroyed(function(){
-  Session.set("room", false);
+  Session.set("lobby", false);
 });
 
 
 Template.game.onRendered(function(){
-  Session.set('room',this.data.name)
+  Session.set('lobby',this.data.name)
 });
 Template.game.onDestroyed(function(){
-  Session.set("room", false);
+  Session.set("lobby", false);
 });
 
 Template.lobby.events({
   'click .start.waves-effect':function () {
-    Meteor.call('startGame',this._id,function (e,r) {
+    Meteor.call('startLobby',this._id,function (e,r) {
       if (e) {
         // handle it!
       } else if (r.success) {
