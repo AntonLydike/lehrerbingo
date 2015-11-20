@@ -1,5 +1,5 @@
 # Lehrerbingo
-Die Meteor implementation von dem Gewinnerprojekt der HPI CodeNight 2015 von Nina Ihde, Bianca Mey, Wencke Bohlius, Pascal Schulze, Till und Anton Lydike.
+Die Meteor implementation von dem Gewinnerprojekt der HPI CodeNight 2015 von Nina Ihde, Bianca Mey, Wencke Bohlius, Pascal Schulze, Anton Lydike und Till.
 ## Spielregeln
 Beim Lehrerbingo geht es darum, vier zufällg ausgewählte Wörter im Unterricht im Gespräch mit dem Lehrer zu erwähnen, ohne dass es allzu unnatürlich herüber kommt. Gewonnen hat der Spieler, der zuerst seine 4 Wörter sagen kann.
 ## Aktuelle Version live
